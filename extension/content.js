@@ -28,7 +28,7 @@ function connectSocket() {
   }
 
   joinedRoomForSocket = false;
-  socket = new WebSocket("ws://localhost:3001");
+  socket = new WebSocket("wss://chillwithbabe.up.railway.app");
 
   socket.onopen = () => {
     console.log("[content] socket connected");

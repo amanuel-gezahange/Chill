@@ -6,8 +6,8 @@
   "permissions": ["storage", "tabs"],
   "host_permissions": [
     "https://www.netflix.com/*",
-    "http://localhost:3001/*",
-    "ws://localhost:3001/*"
+    "https://chillwithbabe.up.railway.app/*",
+    "wss://chillwithbabe.up.railway.app/*"
   ],
   "background": {
     "service_worker": "background.js"
