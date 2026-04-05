@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Watch Together",
+  "version": "0.1.0",
+  "description": "Sync Netflix playback with another person.",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": [
+    "https://www.netflix.com/*",
+    "http://localhost:3001/*",
+    "ws://localhost:3001/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.netflix.com/watch/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ]
+}
