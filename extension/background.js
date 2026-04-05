@@ -5,7 +5,7 @@ let currentRoomId = null;
 function connectSocket() {
   if (socket && socket.readyState === WebSocket.OPEN) return;
 
-  socket = new WebSocket("ws://localhost:3001");
+  socket = new WebSocket("wss://chillwithbabe.up.railway.app");
 
   socket.onopen = () => {
     console.log("[bg] socket connected");
