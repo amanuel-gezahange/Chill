@@ -1,18 +1,26 @@
-import { WebSocketServer } from "ws";
 import http from "http";
+import { WebSocketServer } from "ws";
 
 const port = process.env.PORT || 3001;
-const server = http.createServer();
+
+const server = http.createServer((req, res) => {
+  if (req.url === "/health") {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ ok: true }));
+    return;
+  }
+
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end("Watch Together server is running");
+});
+
 const wss = new WebSocketServer({ server });
 
 const rooms = new Map();
 let nextClientId = 1;
 
 function joinRoom(ws, roomId) {
-  if (!rooms.has(roomId)) {
-    rooms.set(roomId, new Set());
-  }
-
+  if (!rooms.has(roomId)) rooms.set(roomId, new Set());
   rooms.get(roomId).add(ws);
   ws.roomId = roomId;
   console.log(`client ${ws.clientId} joined room ${roomId}`);
